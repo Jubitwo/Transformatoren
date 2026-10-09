@@ -1,37 +1,46 @@
-# Dokumentation: Transformatoren
+# Dokumentation: Induktion und Transformator
 
-## Projektüberblick
+## Lernziel und Aufbau
 
-Selbstlernübungen zu Transformatoren und elektromagnetischer Induktion.
+Das Experimentierlabor führt vom Induktionsprinzip am bewegten Magneten zur Spannungsübertragung im Transformator und verknüpft beides mit Geräten aus dem Alltag.
 
-## Architektur und Dateiaufbau
+## Lernstationen
 
-`index.html` – Einstiegspunkt der Lernseite.
+1. **Bewegung wird zu Spannung** – Stabmagnet und Spule bewegen, Pole umkehren und den Spannungsverlauf beobachten; Versuch in drei Schritten und Zusatz zum magnetischen Fluss/Induktionsgesetz.
+2. **Transformator-Labor** – Primär- und Sekundärseite untersuchen, Wechsel- und Gleichspannung vergleichen, Windungszahl verändern, Ausgangsspannung messen und einen Auftrag zum Einstellen von 12 V lösen. Vertiefungen thematisieren Messwerte, Leistung und Grenzen des idealen Modells.
+3. **Induktion im Alltag** – Induktionsherd und kontaktloses Laden einer elektrischen Zahnbürste.
+4. **Prüfe dein Wissen** – Antworten auswerten und den Wissenstest wiederholen.
 
-Die Anwendung wird als browserbasierte Seite gepflegt. Vor Änderungen an Schnittstellen zwischen Dateien deren bestehende Einbindung im Quelltext prüfen.
+## Dateiaufbau und Start
 
-## Entwicklung und Prüfung
+- [index.html](../index.html) – Experimente, Theorie, Aufgaben und Wissenstest.
 
-1. `index.html` in einem aktuellen Browser öffnen.
-2. Betroffene Abläufe und Eingaben vollständig durchspielen.
-3. Darstellung und Bedienbarkeit auf schmalen Bildschirmen prüfen.
-4. Prüfergebnis in Commit oder Pull Request notieren.
+Die Lernseite lässt sich lokal in einem aktuellen Browser öffnen.
+
+## Prüfung nach Änderungen
+
+- Magnetbewegung, Polumkehr und Spannungsanzeige in beiden Bewegungsrichtungen prüfen.
+- Wechselspannung und Gleichspannung am Transformator vergleichen; Windungszahl und Last verändern.
+- Ausgangsspannung und 12-V-Auftrag mit der Transformatorgleichung kontrollieren.
+- Zusatzanzeigen, Modellgrenzen, Alltagsbeispiele und Quizfeedback prüfen.
+- Zeitlupe, Zurücksetzen und mobile Darstellung testen.
 
 ## Pflege und offene Aufgaben
 
-Aufgaben im GitHub-Issue-Tracker mit Ziel, betroffenen Dateien, erwartetem Ergebnis und Prüfschritten erfassen.
+Issues für Experimente mit Stromkreis, Versuchsbedingung, Messgröße und erwarteter Beobachtung anlegen.
 
 ### Pflege-Checkliste
 
-- [ ] Inhalt und Funktion fachlich geprüft
-- [ ] Eingaben, Rückmeldungen und Fehlerzustände geprüft
-- [ ] Tastaturbedienung und mobile Darstellung geprüft
-- [ ] Änderungen im Browser getestet
+- [ ] Induktions- und Transformatorregeln fachlich korrekt
+- [ ] Messwerte und Modellannahmen verständlich unterschieden
+- [ ] Gleich- und Wechselspannung passend erklärt
+- [ ] Aufgaben und Quizantworten geprüft
+- [ ] Simulation, Zeitlupe und Reset getestet
 - [ ] Dokumentation aktualisiert
 
 ### Issue-Vorlage
 
-- **Ziel:**
-- **Betroffene Dateien/Funktion:**
-- **Erwartetes Ergebnis:**
+- **Experiment/Lernstation:**
+- **Versuchsbedingung:**
+- **Erwartete Messung oder Erklärung:**
 - **Prüfschritte:**
