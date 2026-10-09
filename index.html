@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Induktion & Transformatoren · Das Experimentierlabor</title>
+  <style>
+    :root{color-scheme:light;--ink:#163042;--muted:#536877;--paper:#f3f6fa;--blue:#086a91;--orange:#b34d18;--line:#dce5ed;--green:#126b52}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 system-ui,-apple-system,sans-serif}
+    header{background:#102f41;color:white;padding:45px max(24px,calc((100vw - 1120px)/2)) 32px}header p{max-width:740px;color:#d0e4ef}h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.12;letter-spacing:-.04em;margin:12px 0 20px}h2{font-size:1.7rem;line-height:1.25;margin:0 0 12px}h3{margin:0 0 12px;font-size:1.12rem}p{margin:0 0 14px}.eyebrow{font-size:.8rem;text-transform:uppercase;letter-spacing:.14em;font-weight:750}
+    nav{position:sticky;top:0;background:#ffffffed;backdrop-filter:blur(12px);border-bottom:1px solid var(--line);z-index:5;display:flex;gap:8px;justify-content:center;padding:12px;flex-wrap:wrap}nav a{color:var(--ink);text-decoration:none;padding:7px 14px;border-radius:30px;font-weight:650}nav a:hover{background:#e2eff6}main{max-width:1168px;padding:32px 24px 60px;margin:auto}section{scroll-margin-top:115px;margin-bottom:44px}.intro{max-width:850px;color:var(--muted)}.grid{display:grid;grid-template-columns:1.2fr 1fr;gap:20px}.card{background:white;border:1px solid var(--line);border-radius:20px;padding:24px;min-width:0;box-shadow:0 5px 20px #15304105}.panel{background:#f5f9fc;border-radius:14px;padding:18px;margin-top:18px}.controls{display:grid;gap:18px}.control label{display:flex;justify-content:space-between;gap:12px;font-weight:650}.control small{display:block;color:var(--muted);margin-top:3px}input[type=range]{width:100%;accent-color:var(--blue);cursor:pointer;min-height:28px}button,select{font:inherit}button{border:1px solid var(--line);border-radius:10px;background:white;color:var(--ink);padding:9px 15px;font-weight:650;cursor:pointer}button:hover{background:#eaf3f7}button.primary{background:var(--blue);border-color:var(--blue);color:white}button[aria-pressed=true]{background:var(--ink);color:white}button:disabled{cursor:default;opacity:.55}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #dd8c19;outline-offset:4px}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:18px 0}.metric{padding:14px;background:#eef5f9;border-radius:12px}.metric span{display:block;font-size:.8rem;color:var(--muted)}.metric strong{font-size:1.4rem;overflow-wrap:anywhere}.secondary{background:#fff1e8}.note{border-left:4px solid var(--blue);padding:10px 14px;background:#eef7fb;border-radius:0 10px 10px 0}.warning{border-color:var(--orange);background:#fff1e8}.success{border-color:var(--green);background:#eaf7f1}.equation{font-family:ui-monospace,monospace;font-size:1.1rem;text-align:center;padding:14px;background:#f3f6fa;border-radius:12px;margin:12px 0}.muted,small{color:var(--muted)}svg{display:block;width:100%;height:auto}svg text{font-family:system-ui,sans-serif;fill:var(--ink)}.plot{height:115px;width:100%;display:block;background:#f5f9fc;border-radius:12px}.legend{display:flex;gap:20px;font-size:.85rem;flex-wrap:wrap}.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;background:var(--blue)}.dot.orange{background:var(--orange)}.badge{display:inline-block;border-radius:30px;padding:3px 10px;font-size:.8rem;font-weight:750;background:#e5f3ef;color:var(--green)}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:24px 0}.steps .card{padding:18px}.steps b{display:block}.appliance{margin-top:18px}.quiz{display:grid;gap:16px}.quiz fieldset{border:1px solid var(--line);border-radius:14px;margin:0;padding:18px}.quiz legend{font-weight:700;padding:0 8px}.quiz label{display:block;padding:6px;cursor:pointer}.quiz input{accent-color:var(--blue);margin-right:10px}.feedback{margin-top:10px;font-weight:600}.challenge{margin-top:18px}footer{border-top:1px solid var(--line);padding-top:20px;font-size:.9rem;color:var(--muted)}[hidden]{display:none!important}@media(max-width:800px){.grid,.steps{grid-template-columns:1fr}header{padding:30px 24px}main{padding:24px 16px}.card{padding:18px}nav{gap:0;padding:8px}nav a{font-size:.88rem;padding:6px 10px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+  <style>
+    :root{--field:#7541ae;--field-bg:#f3edfc}
+    .visual-key{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px}
+    .visual-key>div{background:white;border:1px solid var(--line);border-top:5px solid var(--blue);border-radius:14px;padding:16px}
+    .visual-key>div:nth-child(2){border-top-color:var(--field)}.visual-key>div:nth-child(3){border-top-color:var(--orange)}
+    .visual-key b{display:block}.field-note{background:var(--field-bg);border-color:var(--field)}
+    .flow-legend{gap:10px;margin:14px 0}.flow-legend span{padding:5px 10px;background:#eef5f9;border-radius:8px;font-weight:700}
+    .flow-legend .field-label{background:var(--field-bg);color:var(--field)}.flow-legend .load-label{background:#fff1e8;color:var(--orange)}
+    .big-rule{font-size:1.2rem;font-weight:750;padding:18px;background:var(--field-bg);border-radius:14px;margin-bottom:18px}
+    .visual-controls{background:#f5f9fc;border-radius:14px;padding:16px;margin:12px 0}
+    .visual-controls .control{margin-top:12px}.visual-controls p{font-size:.88rem;margin:8px 0 0}
+    .snapshot{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+    .snapshot>div{padding:12px;background:var(--field-bg);border-radius:12px}.snapshot>div:first-child{background:#eef5f9}
+    .snapshot b,.snapshot span{display:block}.snapshot span{font-size:.9rem}
+    .comparison{display:grid;grid-template-columns:auto 1fr;gap:8px 12px;align-items:center;margin:16px 0}
+    .comparison progress{width:100%;height:18px;accent-color:var(--orange)}.comparison label{font-size:.9rem}
+    .diagram-caption{font-size:.9rem;color:var(--muted);margin:10px 0}
+    .diagram-wire{fill:none;stroke:#086a91;stroke-width:5;stroke-linejoin:round;stroke-linecap:round}
+    .diagram-wire.output{stroke:#b34d18}.magnetic-line{fill:none;stroke:#7541ae;stroke-width:4;stroke-linecap:round}
+    #primary-coil,#secondary-coil{stroke-width:3}
+    .focus-task{background:#eaf7f1;border-radius:12px;padding:14px;margin:14px 0}
+    details{margin:14px 0}summary{cursor:pointer;font-weight:650}details p{margin-top:12px}
+    .header-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}.header-actions a{background:white;color:var(--ink);text-decoration:none;padding:10px 16px;border-radius:10px;font-weight:750}.header-actions a.secondary-link{background:transparent;color:white;border:1px solid #ffffff80}
+    .learning-path{background:#eaf7f1;border-left:5px solid var(--green);border-radius:0 14px 14px 0;padding:16px 20px;margin:0 0 32px}.learning-path ol{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:12px 0 0;padding:0;list-style:none;counter-reset:path}.learning-path li{counter-increment:path;background:white;padding:12px;border-radius:10px}.learning-path li::before{content:counter(path);display:inline-grid;place-items:center;width:25px;height:25px;margin-right:7px;border-radius:50%;background:var(--green);color:white;font-weight:800}
+    .basic-task{border:2px solid #b9d8e6;background:#f8fcfe;border-radius:14px;padding:16px;margin:18px 0}.basic-task h3{margin-top:0}.advanced-label{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:800}
+    .curriculum-extension{display:none}.transformer-metrics{grid-template-columns:1fr}.transformer-metrics .metric:not(:first-child){display:none}
+    @media(max-width:800px){.learning-path ol{grid-template-columns:1fr 1fr}}
+    @media(max-width:600px){.visual-key{grid-template-columns:1fr;gap:8px}.visual-key>div{padding:12px}.snapshot{grid-template-columns:1fr}.control label{flex-wrap:wrap}.metrics{gap:8px}.metric{padding:10px}.metric strong{font-size:1.2rem}.learning-path ol{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="eyebrow">Physik · Klasse 10 · Schritt für Schritt</div>
+    <h1>Induktion und<br>Transformator</h1>
+    <p>Beobachte zuerst, wann eine Spannung entsteht. Verstehe danach, wie ein Transformator Wechselspannungen verändert.</p>
+    <span class="badge">Offline nutzbar · Alle Versuche sind Simulationen</span>
+    <div class="header-actions"><a href="#induktion">Lernweg starten</a><a class="secondary-link" href="arbeitsblaetter-transformator.html">Arbeitsblatt öffnen</a></div>
+  </header>
+  <nav aria-label="Lernstationen">
+    <a href="#induktion">1 · Induktion</a><a href="#transformator">2 · Transformator</a><a href="#alltag">3 · Alltag</a><a href="#wissen">4 · Wissen testen</a>
+  </nav>
+  <main>
+    <div class="learning-path">
+      <b>Das kannst du am Ende</b>
+      <ol><li>Induktion beschreiben</li><li>einen Trafo erklären</li><li>Spannungen berechnen</li><li>ein Alltagsgerät erklären</li></ol>
+    </div>
+    <div class="visual-key" aria-label="Farben und Zeichen verstehen">
+      <div><b>Blau · Eingang</b>Hier ist die Spannungsquelle angeschlossen.</div>
+      <div><b>Violett · Magnetfeld</b>Feldlinien machen das unsichtbare Magnetfeld sichtbar.</div>
+      <div><b>Orange · Ausgang</b>Hier wird eine neue Spannung erzeugt.</div>
+    </div>
+    <section id="induktion" aria-labelledby="induction-title">
+      <h2 id="induction-title">1 · Bewegung wird zu Spannung</h2>
+      <p class="intro"><b>Induktion</b> bedeutet: Ein sich änderndes Magnetfeld erzeugt in einer Spule eine elektrische Spannung.</p>
+      <div class="grid">
+        <div class="card">
+          <svg viewBox="0 0 620 250" role="img" aria-labelledby="magnet-title magnet-desc">
+            <title id="magnet-title">Beweglicher Stabmagnet und Spule</title><desc id="magnet-desc">Der Magnet bewegt sich entlang der Spulenachse. Das Messgerät zeigt die induzierte Spannung.</desc>
+            <path d="M25 111H595" stroke="#d6e3eb" stroke-width="2" stroke-dasharray="5 6"/>
+            <ellipse id="induction-field-strength" cx="310" cy="110" rx="48" ry="70" fill="#7541ae" opacity=".06"/>
+            <g id="magnet-field" transform="translate(70 110)" class="magnetic-line">
+              <path d="M-38 0C-70 -70 70 -70 38 0C20 0 -20 0 -38 0Z"/>
+              <path d="M-38 0C-70 70 70 70 38 0C20 0 -20 0 -38 0Z"/>
+              <g id="magnet-field-arrows" fill="#7541ae" stroke="none"><path d="M7 -51L-7 -58V-44Z"/><path d="M7 51L-7 44V58Z"/></g>
+            </g>
+            <g id="magnet" transform="translate(70 110)"><rect x="-48" y="-23" width="48" height="46" rx="5" fill="#be512c"/><rect y="-23" width="48" height="46" rx="5" fill="#086a91"/><text id="pole-left" x="-25" y="6" text-anchor="middle" style="fill:white;font-weight:700">N</text><text id="pole-right" x="25" y="6" text-anchor="middle" style="fill:white;font-weight:700">S</text></g>
+            <g fill="none" stroke="#b36b29" stroke-width="5"><ellipse cx="286" cy="110" rx="16" ry="56"/><ellipse cx="298" cy="110" rx="16" ry="56"/><ellipse cx="310" cy="110" rx="16" ry="56"/><ellipse cx="322" cy="110" rx="16" ry="56"/><ellipse cx="334" cy="110" rx="16" ry="56"/><path d="M286 166V207H420V163"/></g>
+            <rect x="390" y="138" width="130" height="58" rx="12" fill="#eef5f9" stroke="#dce5ed"/><text id="meter-text" x="455" y="174" text-anchor="middle" font-size="22">0,00 V</text>
+            <text x="310" y="28" text-anchor="middle" font-size="15">Spule · 80 Windungen</text><text x="70" y="245" font-size="13">links</text><text x="550" y="245" font-size="13">rechts</text>
+          </svg>
+          <p class="diagram-caption">Die violetten Linien zeigen das Magnetfeld. Schiebe den Magneten durch die Spule und beobachte das Messgerät.</p>
+          <div class="control"><label for="position">Magnet verschieben <output id="position-value" aria-live="off">−100 %</output></label><input id="position" type="range" min="-100" max="100" value="-100" step="1"></div>
+          <div class="row"><button id="auto-magnet" class="primary" aria-pressed="false">Bewegung starten</button><button id="reverse-poles" aria-pressed="false">Pole umkehren</button></div>
+          <div class="control panel"><label for="speed">Bewegungstempo <output id="speed-value">1,0×</output></label><input id="speed" type="range" min="0.3" max="3" step="0.1" value="1"></div>
+          <details><summary><span class="advanced-label">Zusatz</span> Spannungsverlauf als Kurve</summary><p class="muted">Die Kurve zeigt die letzten 6 Sekunden. Oberhalb der Mittellinie ist die Spannung positiv, unterhalb negativ.</p><canvas id="induction-plot" class="plot" role="img" aria-label="Zeitlicher Verlauf der induzierten Spannung"></canvas></details>
+        </div>
+        <div class="card">
+          <h3>Dein Messplatz</h3>
+          <div class="metrics"><div class="metric"><span>Induzierte Spannung</span><strong id="induced-voltage">0,00 V</strong></div><div class="metric"><span>Worauf kommt es an?</span><strong>Änderung</strong></div></div><span id="magnetic-flux" hidden>0,01 mWb</span>
+          <p id="induction-status" class="note">Der Magnet steht: keine induzierte Spannung.</p>
+          <div class="big-rule">Feld verändert sich → Spannung entsteht.<br>Magnet steht still → keine Spannung.</div>
+          <p><b>Schneller bewegen:</b> Die Spannung wird größer. <b>Andersherum bewegen oder Pole tauschen:</b> Die Spannung kann ihre Richtung wechseln.</p>
+          <p class="note">Hier ist nur ein Spannungsmessgerät angeschlossen. Es fließt praktisch <b>kein Strom</b> — deshalb zeigen wir keine Strompfeile. Eine Spannung allein ist noch kein Strom!</p>
+          <div class="basic-task"><h3>Dein 3-Schritte-Versuch</h3><ol><li>Bewege den Magneten langsam, dann schnell.</li><li>Halte ihn mitten in der Spule an.</li><li>Bewege ihn wieder aus der Spule heraus.</li></ol><p><b>Erkläre:</b> Wann ist die Spannung groß? Wann ist sie null?</p><details><summary>Ergebnis prüfen</summary><p>Je schneller sich das Magnetfeld in der Spule ändert, desto größer ist die Spannung. Beim Stillstand ist sie null. Bei umgekehrter Bewegung wechselt die angezeigte Richtung der Spannung.</p></details></div>
+          <details><summary><span class="advanced-label">Zusatz</span> Magnetischer Fluss und Induktionsgesetz</summary><p>Der magnetische Fluss Φ beschreibt vereinfacht, wie viel Magnetfeld durch die Spule geht.</p><div class="equation">U<sub>ind</sub> = −N · ΔΦ / Δt</div><p>Für den Grundkurs reicht: Je schneller sich das Feld ändert, desto größer ist die Induktionsspannung.</p></details>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="card"><b>① Der Magnet darf weg!</b>Auch eine Spule mit Strom erzeugt ein Magnetfeld.</div>
+        <div class="card"><b>② Strom wechselt die Richtung</b>Wechselstrom erzeugt ein Magnetfeld, das ständig seine Stärke und Richtung ändert.</div>
+        <div class="card"><b>③ Eine zweite Spule kommt dazu</b>Das wechselnde Feld erzeugt dort eine Spannung. Fertig ist das Grundprinzip des Transformators!</div>
+      </div>
+    </section>
+    <section id="transformator" aria-labelledby="transformer-title">
+      <h2 id="transformer-title">2 · Dein Transformator-Labor</h2>
+      <p class="intro">Ein <b>Transformator</b> verändert Wechselspannungen. Er besteht aus Primärspule, Sekundärspule und Eisenkern. Die beiden Stromkreise sind nicht mit einem Draht verbunden.</p>
+      <div class="grid">
+        <div class="card">
+          <svg viewBox="0 0 620 310" role="img" aria-labelledby="trafo-svg-title trafo-svg-desc">
+            <title id="trafo-svg-title">Zwei Stromkreise, ein wechselndes Magnetfeld</title><desc id="trafo-svg-desc">Blaue und orange Pfeile zeigen die wechselnde technische Stromrichtung in getrennten Drahtkreisen. Violette Pfeile zeigen das Magnetfeld im Eisenkern. Die Animation ist stark verlangsamt.</desc>
+            <rect x="155" y="48" width="310" height="174" rx="25" fill="#dce5eb"/><rect x="209" y="94" width="202" height="82" rx="8" fill="white"/>
+            <g id="core-field"><path id="core-field-path" d="M181 72H439V198H181Z" class="magnetic-line"/><path d="M191 82H429V188H191Z" class="magnetic-line" opacity=".3"/><g id="core-arrows" fill="#7541ae"></g></g>
+            <path id="primary-wire" d="M181 93H58V175H181" class="diagram-wire"/>
+            <path id="secondary-wire" d="M439 93H563V175H439" class="diagram-wire output"/>
+            <path id="primary-coil" class="diagram-wire"/>
+            <path id="secondary-coil" class="diagram-wire output"/>
+            <g id="primary-flow" fill="#086a91"></g><g id="secondary-flow" fill="#b34d18"></g>
+            <circle cx="58" cy="133" r="23" fill="white" stroke="#086a91" stroke-width="3"/><text id="source-symbol" x="58" y="142" text-anchor="middle" font-size="30">~</text>
+            <rect x="549" y="109" width="28" height="46" fill="white" stroke="#b34d18" stroke-width="3" id="load-symbol"/>
+            <g id="open-switch" hidden><rect x="506" y="83" width="35" height="20" fill="white"/><path d="M507 93L534 77" stroke="#b34d18" stroke-width="3"/></g>
+            <text x="125" y="29" text-anchor="middle" font-size="17" font-weight="700">1 · Eingang</text><text x="495" y="29" text-anchor="middle" font-size="17" font-weight="700">2 · Ausgang</text>
+            <text x="310" y="131" text-anchor="middle" font-size="15">Eisenkern</text><text x="310" y="154" text-anchor="middle" font-size="12">kein Strom von links nach rechts!</text>
+            <text id="n1-svg" x="155" y="247" text-anchor="middle">N₁ = 500</text><text id="n2-svg" x="465" y="247" text-anchor="middle">N₂ = 250</text>
+            <text x="58" y="279" text-anchor="middle" font-size="14">Quelle</text><text x="550" y="279" text-anchor="middle" font-size="14">Verbraucher</text>
+          </svg>
+          <div class="legend flow-legend"><span>→ Blau: Strom 1</span><span class="field-label">→ Violett: Magnetfeld</span><span class="load-label">→ Orange: Strom 2</span></div>
+          <div class="visual-controls">
+            <div class="row"><button id="animation-toggle" aria-pressed="true">Zeitlupe anhalten</button><span class="badge">50 Hz → sichtbar verlangsamt</span></div>
+            <div class="control curriculum-extension"><label for="animation-phase">Eine Schwingung untersuchen <output id="phase-value" aria-live="off">45°</output></label><input id="animation-phase" type="range" min="0" max="360" step="1" value="45"></div>
+            <p>Die Pfeile wechseln ihre Richtung. So erkennst du den Wechselstrom und das sich ändernde Magnetfeld.</p>
+          </div>
+          <div class="snapshot curriculum-extension" aria-label="Momentaufnahme in der Zeitlupe"><div><b id="current-direction">Stromrichtung</b><span id="current-instant"></span></div><div><b id="field-direction">Feldrichtung</b><span id="field-instant"></span></div></div>
+          <p class="note field-note" id="visual-status"></p>
+          <div class="focus-task"><b>Beobachtungsauftrag:</b> Starte die Zeitlupe. Beschreibe den Weg: Spule 1 → Magnetfeld im Kern → Spule 2.</div>
+          <h3>Ausgangsspannung</h3>
+          <div class="comparison curriculum-extension"><label for="input-voltage-bar">Spannung U₁ · Eingang</label><progress id="input-voltage-bar" max="100" value="0" style="accent-color:var(--blue)"></progress><label for="voltage-bar">Spannung U₂ · Ausgang</label><progress id="voltage-bar" max="100" value="0"></progress><label for="input-current-bar">Strom I₁ · Eingang</label><progress id="input-current-bar" max="100" value="0" style="accent-color:var(--blue)"></progress><label for="current-bar">Strom I₂ · Ausgang</label><progress id="current-bar" max="100" value="0"></progress></div>
+          <p id="comparison-caption" class="diagram-caption curriculum-extension"></p>
+          <div class="legend curriculum-extension"><span><i class="dot"></i>Primärspannung</span><span><i class="dot orange"></i>Sekundärspannung</span></div>
+          <canvas id="transformer-plot" class="plot curriculum-extension" role="img" aria-label="Vergleich der sinusförmigen Primär- und Sekundärspannung, gleiche gemeinsame Skala"></canvas>
+          <div class="metrics transformer-metrics">
+            <div class="metric"><span>Sekundärspannung U₂</span><strong id="u2">115 V</strong></div><div class="metric secondary"><span>Sekundärstrom I₂</span><strong id="i2">1,15 A</strong></div>
+            <div class="metric"><span>Primärstrom I₁</span><strong id="i1">0,575 A</strong></div><div class="metric secondary"><span>Übertragene Wirkleistung P</span><strong id="power">132 W</strong></div>
+          </div>
+          <p class="note" id="transformer-summary"></p>
+          <p class="note warning" id="limits-note" hidden></p>
+          <div class="big-rule">Doppelt so viele Windungen am Ausgang?<br>Dann doppelt so viel Spannung!</div>
+          <div class="equation">U₂ / U₁ = N₂ / N₁</div>
+          <details><summary>Vertiefung: Strom, Leistung und Messwerte</summary><div class="equation">I₂ / I₁ = N₁ / N₂<br>P₁ = U₁ · I₁ = U₂ · I₂ = P₂</div><p>Die Stromübersetzung gilt bei angeschlossener Last und I₁ ≠ 0. <b>Leistung P</b> bedeutet übertragene Energie pro Sekunde. Ein idealer Trafo erzeugt keine zusätzliche Energie.</p><p>Die großen Messwerte sind <b>Effektivwerte</b>: Sie beschreiben die Heizwirkung des Wechselstroms. Die Momentaufnahme darüber zeigt dagegen den Wert zu einem einzelnen Zeitpunkt. Der größte Betrag ist √2-mal der Effektivwert.</p><p>Das Magnetfeld ist hier proportional zu −cos(Phase), die Spannung zu sin(Phase). Das passt zum Induktionsgesetz: Die Spannung ist am größten, wenn sich der Fluss am schnellsten ändert. Die Strompfeile gelten für eine Widerstandslast; die Richtung hängt auch vom Wicklungssinn und den gewählten Anschlüssen ab.</p></details>
+        </div>
+        <div class="card">
+          <h3>Du bist am Regler!</h3>
+          <div class="row curriculum-extension" style="margin-bottom:20px"><button id="mode-ac" aria-pressed="true">Wechselspannung</button><button id="mode-dc" aria-pressed="false">Gleichspannung</button></div>
+          <div class="controls">
+            <div class="control"><label for="primary-voltage">Eingangsspannung U₁ <output id="u1-value"></output></label><input id="primary-voltage" type="range" min="0" max="236" step="0.01" value="107.84"><small>Beginne mit 12 V.</small></div>
+            <div class="control"><label for="primary-turns">Windungen am Eingang N₁ <output id="n1-value"></output></label><input id="primary-turns" type="range" min="10" max="2000" step="10" value="400"><small>Eine Windung ist eine Drahtschleife um den Kern.</small></div>
+            <div class="control"><label for="secondary-turns">Windungen am Ausgang N₂ <output id="n2-value"></output></label><input id="secondary-turns" type="range" min="10" max="2000" step="10" value="200"></div>
+            <div class="control curriculum-extension"><label for="resistance">Widerstand des Verbrauchers R <output id="r-value"></output></label><input id="resistance" type="range" min="-2" max="6" step="0.01" value="1.08"></div>
+            <div class="row"><button id="reset-transformer">Zurücksetzen</button><button id="no-load" class="curriculum-extension" aria-pressed="false">Last abtrennen</button></div>
+          </div>
+          <div class="panel"><h3>Untersuche die Windungszahl</h3><p>Halbiere und verdopple N₂. Was passiert mit U₂?</p></div>
+          <p class="note warning" style="margin-top:18px"><b>Nur virtuell experimentieren!</b> Hohe Spannungen und große Ströme sind gefährlich. Auch kleine Spannungen können bei großen Strömen starke Erwärmung verursachen.</p>
+          <details><summary>Was das ideale Modell weglässt</summary><p>Keine Kupfer- und Kernverluste, kein Streufluss, keine Sättigung und kein Magnetisierungsstrom. Deshalb kann das Modell mathematisch extreme Leistungen liefern. Reale Transformatoren sind durch Nennleistung, Isolierung, Erwärmung und Kernsättigung begrenzt. Mehr Windungen bedeuten nicht mehr verfügbare Energie.</p><p>Bei Gleichspannung zeigen wir nur den stationären Zustand: kein veränderlicher Fluss, daher keine dauerhafte Sekundärspannung. Ein- und Ausschaltimpulse werden nicht simuliert. Der Primärstrom ist dann in diesem idealen Modell nicht sinnvoll berechenbar; reale Spulen können überhitzen.</p></details>
+          <div class="panel challenge"><h3>Laborauftrag: 12 V treffen</h3><p>Stelle bei U₁ = 120 V und N₁ = 500 eine Sekundärspannung von 12 V ein. Die Last darf beliebig sein.</p><div class="row"><button id="start-challenge">Auftrag vorbereiten</button><button id="check-challenge">Einstellung prüfen</button></div><p id="challenge-feedback" class="feedback" role="status"></p></div>
+        </div>
+      </div>
+      <div class="panel"><b>Merke: Ein Trafo zaubert keine Energie.</b> Bei <b>gleicher Leistung</b> gilt: höhere Spannung → kleinerer Strom. Aber wenn du die Ausgangsspannung erhöhst und denselben Widerstand angeschlossen lässt, fließt dort mehr Strom. Die Quelle muss dann mehr Leistung liefern.<details><summary>Alltag: Warum haben Überlandleitungen hohe Spannungen?</summary><p>Bei gleicher transportierter Leistung braucht man weniger Strom. Dadurch erwärmen sich die Leitungen weniger. Ihre Wärmeverluste sind P<sub>Verlust</sub> = I² · R<sub>Leitung</sub>. Halber Strom bedeutet nur ein Viertel der Wärmeverluste.</p></details></div>
+    </section>
+    <section id="alltag" aria-labelledby="everyday-title">
+      <h2 id="everyday-title">3 · Induktion im Alltag</h2>
+      <p class="intro">Dasselbe Grundprinzip, unterschiedliche Aufgaben: Energie berührungslos übertragen oder direkt Wärme erzeugen.</p>
+      <div class="grid">
+        <div class="card">
+          <h3>Induktionsherd · Der Topf wird zur Heizung</h3>
+          <svg viewBox="0 0 480 245" role="img" aria-label="Violette Feldlinien verbinden Spule und Topfboden. Orange kreisförmige Pfeile zeigen Wirbelströme im Topf.">
+            <path id="pan-body" d="M130 25V82Q130 105 150 105H330Q350 105 350 82V25" fill="#e6eef3" stroke="#536877" stroke-width="5"/>
+            <g id="pan-heat"><path d="M150 100H330" stroke="#b34d18" stroke-width="12"/><text x="240" y="46" text-anchor="middle" font-size="17">Topfboden wird heiß</text></g>
+            <path d="M110 125H370" stroke="#98aab7" stroke-width="5"/><text x="390" y="130" font-size="13">Glasplatte</text>
+            <g id="hob-field"><path id="hob-field-path" d="M160 155C125 50 355 50 320 155C290 210 190 210 160 155Z" class="magnetic-line"/><g id="hob-field-arrows" fill="#7541ae"></g></g>
+            <path d="M140 158q20 -30 40 0t40 0t40 0t40 0t40 0" fill="none" stroke="#086a91" stroke-width="6"/>
+            <path id="eddy-path" d="M180 79C180 56 240 56 240 79C240 102 180 102 180 79Z" fill="none" stroke="#b34d18" stroke-width="3"/><g id="eddy-flow" fill="#b34d18"></g>
+            <text x="240" y="230" text-anchor="middle" font-size="15">Wechselstrom in der Spule → wechselndes Feld</text>
+          </svg>
+          <p class="diagram-caption"><b>Orange Kreispfeile:</b> Wirbelströme im Topfboden, schematisch von oben angedeutet. <b>Violette Feldlinien:</b> das wechselnde Magnetfeld. Ohne geeigneten Topf bleibt die Heizung in diesem Modell aus.</p>
+          <label for="pan-material">Welcher Topf steht auf dem Kochfeld?</label>
+          <select id="pan-material" style="width:100%;padding:10px;border-radius:8px;margin:8px 0"><option value="steel">Geeigneter magnetischer Stahlboden</option><option value="aluminium">Reines Aluminium ohne Spezialboden</option><option value="glass">Glas</option><option value="none">Kein Topf</option></select>
+          <div class="control"><label for="hob-power">Leistungsstufe <output id="hob-value">5 / 9</output></label><input id="hob-power" type="range" min="0" max="9" value="5"></div>
+          <p id="hob-status" class="note appliance" role="status"></p>
+          <div class="big-rule">Spule → Magnetfeld → Strom im Topf → Wärme</div>
+          <p>Das wechselnde Magnetfeld erzeugt im Topfboden <b>Wirbelströme</b>: Ströme, die im Kreis fließen. Der elektrische Widerstand des Topfes wandelt ihre Energie in Wärme um.</p>
+          <details><summary>Zusätzlicher Wärmeeffekt</summary><p>Bei magnetischen Materialien kann auch das ständige Ummagnetisieren zur Erwärmung beitragen.</p></details>
+          <small>Modell eines üblichen Haushalts-Induktionsfelds: Es benötigt einen passenden, magnetischen Boden. Spezialgeräte können auch andere Metalle erhitzen. Die Platte kann durch den heißen Topf heiß werden — sie bleibt nicht grundsätzlich kalt.</small>
+        </div>
+        <div class="card">
+          <h3>Elektrische Zahnbürste · Laden ohne Metallkontakte</h3>
+          <svg viewBox="0 0 480 300" role="img" aria-label="Zahnbürste mit zwei getrennten Spulen. Violette Feldlinien übertragen Energie; nach der Ladeelektronik fließt Gleichstrom zum Akku.">
+            <rect x="110" y="225" width="260" height="35" rx="12" fill="#dce5ed"/>
+            <g id="charging-field"><path id="charging-field-path" d="M220 242C175 210 175 140 220 170H260C305 140 305 210 260 242Z" class="magnetic-line"/><g id="charging-field-arrows" fill="#7541ae"></g></g>
+            <g id="brush-body">
+              <rect x="198" y="63" width="84" height="153" rx="20" fill="#eef5f9" stroke="#536877" stroke-width="3"/>
+              <rect x="227" y="78" width="26" height="38" rx="4" fill="#d9efe4" stroke="#126b52" stroke-width="2"/><text x="240" y="102" text-anchor="middle" font-size="13">+</text>
+              <path id="battery-path" d="M221 151V89H227" fill="none" stroke="#b34d18" stroke-width="3"/><path d="M253 89H262V151" fill="none" stroke="#b34d18" stroke-width="3"/>
+              <g id="battery-flow" fill="#b34d18"></g>
+              <rect x="210" y="140" width="60" height="25" rx="5" fill="white" stroke="#536877"/><text x="240" y="157" text-anchor="middle" font-size="10">Ladeelektronik</text>
+              <path d="M218 165V181H262V191H218V201H262V165" fill="none" stroke="#b34d18" stroke-width="4"/>
+            </g>
+            <path d="M218 236h44m-44 10h44" stroke="#086a91" stroke-width="4"/>
+            <text x="90" y="154" text-anchor="middle" font-size="14">Magnetfeld</text><text x="360" y="90" text-anchor="middle" font-size="14">Akku</text><text x="240" y="284" text-anchor="middle" font-size="14">Spule in der Ladestation</text>
+          </svg>
+          <p class="diagram-caption"><b>Violett:</b> wechselndes Feld zwischen den Spulen. <b>Orange Pfeile zum Akku:</b> Strom mit gleichbleibender Richtung nach der Ladeelektronik — keine direkte Drahtverbindung zur Station.</p>
+          <div class="control"><label for="brush-gap">Abstand zur Ladestation <output id="gap-value">0 mm</output></label><input id="brush-gap" type="range" min="0" max="30" value="0"></div>
+          <div class="row"><button id="charger-switch" class="primary" aria-pressed="true">Ladestation an</button></div>
+          <p id="brush-status" class="note appliance" role="status"></p>
+          <div class="big-rule">Station → Magnetfeld → Bürste → Akku</div>
+          <p>Eine Spule steckt in der Station, die andere in der Bürste. Das Magnetfeld überträgt Energie durch das Kunststoffgehäuse. Die <b>Ladeelektronik</b> macht aus der Wechselspannung eine passende Gleichspannung und steuert das Laden des Akkus.</p>
+          <details><summary>Warum Gleichspannung für den Akku?</summary><p>Beim Laden braucht der Akku eine feste Polarität, also eine gleichbleibende Zuordnung von Plus und Minus. Ein <b>Gleichrichter</b> in der Elektronik wandelt die Wechselspannung entsprechend um.</p></details>
+          <small>Die Kopplungsanzeige ist qualitativ, keine reale Ladeleistung. Größerer Abstand und schlechte Ausrichtung verringern die Energieübertragung. Der Akku selbst wird nicht direkt mit Wechselstrom geladen.</small>
+        </div>
+      </div>
+    </section>
+    <section id="wissen" aria-labelledby="quiz-title">
+      <h2 id="quiz-title">4 · Prüfe dein Wissen</h2>
+      <form id="quiz" class="card quiz">
+        <fieldset><legend>1. Ein Magnet ruht in einer Spule. Was gilt?</legend><label><input type="radio" name="q1" value="a" required>Ein starkes Magnetfeld erzeugt immer eine Spannung.</label><label><input type="radio" name="q1" value="b">Ohne Änderung des Magnetfeldes entsteht keine Spannung.</label><div id="feedback-q1" class="feedback"></div></fieldset>
+        <fieldset><legend>2. N₂ = 4 · N₁. Wie groß ist U₂ beim idealen Wechselspannungstrafo?</legend><label><input type="radio" name="q2" value="a" required>U₂ = 4 · U₁.</label><label><input type="radio" name="q2" value="b">U₂ = U₁ / 4.</label><div id="feedback-q2" class="feedback"></div></fieldset>
+        <fieldset><legend>3. N₂ ist halb so groß wie N₁. Was gilt?</legend><label><input type="radio" name="q3" value="a" required>U₂ ist doppelt so groß wie U₁.</label><label><input type="radio" name="q3" value="b">U₂ ist halb so groß wie U₁.</label><div id="feedback-q3" class="feedback"></div></fieldset>
+        <fieldset><legend>4. Warum lädt die Zahnbürste ohne offene elektrische Kontakte?</legend><label><input type="radio" name="q4" value="a" required>Ein wechselndes Magnetfeld überträgt Energie zwischen zwei Spulen.</label><label><input type="radio" name="q4" value="b">Der Kunststoff leitet den Ladestrom direkt in den Akku.</label><div id="feedback-q4" class="feedback"></div></fieldset>
+        <div class="row"><button type="submit" class="primary">Antworten auswerten</button><button type="reset">Noch einmal</button><strong id="quiz-score" role="status"></strong></div>
+      </form>
+    </section>
+    <footer><b>Modell statt Bauanleitung.</b> Alle Versuche finden ausschließlich virtuell statt. Idealmodell des Transformators mit rein ohmscher Last und sinusförmiger Wechselspannung. Die Alltagsmodelle sind qualitativ. Bedienung auch per Tastatur: Tab zum Feld, Pfeiltasten zum Verstellen. Keine externen Bibliotheken, keine Datenübertragung.</footer>
+  </main>
+  <script>
+    (() => {
+    'use strict';
+    const element = id => document.getElementById(id);
+    const numberFormat = new Intl.NumberFormat('de-DE', { maximumFractionDigits: 2 });
+    function quantity(value, unit) {
+      const magnitude = Math.abs(value);
+      const prefixes = [[1e12, 'T'], [1e9, 'G'], [1e6, 'M'], [1e3, 'k'], [1, ''], [1e-3, 'm'], [1e-6, 'µ'], [1e-9, 'n'], [1e-12, 'p']];
+      const prefix = magnitude === 0 ? [1, ''] : prefixes.find(([factor]) => magnitude >= factor) || prefixes[prefixes.length - 1];
+      return `${numberFormat.format(value / prefix[0])} ${prefix[1]}${unit}`;
+    }
+    function text(id, value) { element(id).textContent = value; }
+    function createArrows(pathId, groupId, count) {
+      const path = element(pathId), group = element(groupId);
+      const length = path.getTotalLength();
+      const arrows = Array.from({length:count}, (_, index) => {
+        const arrow = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        arrow.setAttribute('d', 'M-6 -5L7 0L-6 5Z');
+        group.append(arrow);
+        const distance = (index + 0.5) / count * length;
+        return {arrow, distance};
+      });
+      return (signal, active = true, displacement = 0) => {
+        const visible = active && Math.abs(signal) > 0.025;
+        group.setAttribute('visibility', visible ? 'visible' : 'hidden');
+        group.dataset.direction = !visible ? 'none' : signal > 0 ? 'positive' : 'negative';
+        if (!visible) return;
+        arrows.forEach(({arrow, distance}) => {
+          const location = Math.max(1, Math.min(length - 1, distance + displacement));
+          const point = path.getPointAtLength(location);
+          const before = path.getPointAtLength(location - 1), after = path.getPointAtLength(location + 1);
+          const angle = Math.atan2(after.y - before.y, after.x - before.x) * 180 / Math.PI;
+          arrow.setAttribute('transform', `translate(${point.x} ${point.y}) rotate(${angle + (signal < 0 ? 180 : 0)})`);
+        });
+      };
+    }
+    function setupVisualClock() {
+      const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+      let playing = !preference.matches, phase = Math.PI / 4, lastTime = null;
+      const listeners = [];
+      function render() {
+        element('animation-toggle').setAttribute('aria-pressed', String(playing));
+        text('animation-toggle', playing ? 'Zeitlupe anhalten' : 'Zeitlupe starten');
+        element('animation-phase').value = String(Math.round(phase * 180 / Math.PI));
+        text('phase-value', `${Math.round(phase * 180 / Math.PI)}°`);
+        listeners.forEach(listener => listener(phase));
+      }
+      element('animation-toggle').addEventListener('click', () => { playing = !playing; lastTime = null; render(); });
+      element('animation-phase').addEventListener('input', event => {
+        playing = false; phase = Number(event.target.value) * Math.PI / 180; render();
+      });
+      preference.addEventListener('change', event => { if (event.matches) { playing = false; render(); } });
+      function tick(time) {
+        if (lastTime === null) lastTime = time;
+        const elapsed = (time - lastTime) / 1000;
+        if (elapsed >= 1 / 30) {
+          lastTime = time;
+          if (playing && !document.hidden && elapsed < 0.2) {
+            phase = (phase + elapsed * 2 * Math.PI / 6) % (2 * Math.PI);
+            render();
+          }
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      return {
+        subscribe(listener) { listeners.push(listener); listener(phase); },
+        refresh:render
+      };
+    }
+    function prepareCanvas(id) {
+      const canvas = element(id);
+      const width = canvas.clientWidth;
+      const height = canvas.clientHeight;
+      const pixelRatio = window.devicePixelRatio || 1;
+      if (canvas.width !== Math.round(width * pixelRatio) || canvas.height !== Math.round(height * pixelRatio)) {
+        canvas.width = Math.round(width * pixelRatio); canvas.height = Math.round(height * pixelRatio);
+      }
+      const context = canvas.getContext('2d');
+      context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+      context.clearRect(0, 0, width, height);
+      context.strokeStyle = '#cfdee8'; context.lineWidth = 1;
+      context.beginPath(); context.moveTo(0, height / 2); context.lineTo(width, height / 2); context.stroke();
+      return { context, width, height };
+    }
+    function drawCurve(context, points, color) {
+      context.strokeStyle = color; context.lineWidth = 2;
+      context.beginPath(); points.forEach(([x, y], index) => index ? context.lineTo(x, y) : context.moveTo(x, y)); context.stroke();
+    }
+    function setupInduction() {
+      const position = element('position');
+      let running = false, polarity = 1, previousTime = null, previousFlux = null, phase = -Math.PI / 2, history = [], lastPlot = 0;
+      element('auto-magnet').addEventListener('click', () => {
+        running = !running;
+        previousFlux = null;
+        phase = Math.asin(Number(position.value) / 100);
+        element('auto-magnet').setAttribute('aria-pressed', String(running));
+        text('auto-magnet', running ? 'Bewegung anhalten' : 'Bewegung starten');
+      });
+      position.addEventListener('input', () => {
+        running = false; element('auto-magnet').setAttribute('aria-pressed', 'false'); text('auto-magnet', 'Bewegung starten');
+      });
+      element('reverse-poles').addEventListener('click', () => {
+        polarity *= -1; previousFlux = null;
+        element('reverse-poles').setAttribute('aria-pressed', String(polarity < 0));
+        text('pole-left', polarity > 0 ? 'N' : 'S'); text('pole-right', polarity > 0 ? 'S' : 'N');
+        element('magnet-field-arrows').setAttribute('transform', polarity > 0 ? '' : 'rotate(180)');
+      });
+      element('speed').addEventListener('input', () => text('speed-value', `${Number(element('speed').value).toLocaleString('de-DE', {minimumFractionDigits:1})}×`));
+      function tick(time) {
+        const elapsed = previousTime === null ? 0 : (time - previousTime) / 1000;
+        const validStep = elapsed > 0 && elapsed < 0.2;
+        previousTime = time;
+        if (running && validStep) { phase += elapsed * Number(element('speed').value) * 1.5; position.value = String(Math.round(100 * Math.sin(phase))); }
+        const location = running ? Math.sin(phase) : Number(position.value) / 100;
+        const flux = polarity * 0.002 * Math.exp(-5 * location * location);
+        const voltage = previousFlux === null || !validStep ? 0 : -80 * (flux - previousFlux) / elapsed;
+        previousFlux = flux;
+        element('magnet').setAttribute('transform', `translate(${310 + 240 * location} 110)`);
+        element('magnet-field').setAttribute('transform', `translate(${310 + 240 * location} 110)`);
+        element('induction-field-strength').setAttribute('opacity', String(0.06 + Math.abs(flux) / 0.002 * 0.35));
+        text('position-value', `${numberFormat.format(location * 100)} %`);
+        const voltageText = `${numberFormat.format(Math.abs(voltage) < 0.005 ? 0 : voltage)} V`;
+        text('meter-text', voltageText); text('induced-voltage', voltageText); text('magnetic-flux', `${numberFormat.format(flux * 1000)} mWb`);
+        text('induction-status', Math.abs(voltage) < 0.005 ? 'Das Feld in der Spule ändert sich gerade nicht: keine Spannung.' : `Das Feld in der Spule ändert sich: Spannung entsteht! Das Messgerät zeigt ${voltage > 0 ? 'Plus' : 'Minus'} — bezogen auf seine Anschlüsse.`);
+        history.push({time:time / 1000, voltage});
+        history = history.filter(point => point.time >= time / 1000 - 6);
+        if (time - lastPlot > 50) {
+          const {context, width, height} = prepareCanvas('induction-plot');
+          const scale = Math.max(0.25, ...history.map(point => Math.abs(point.voltage)));
+          drawCurve(context, history.map(point => [width * (1 - (time / 1000 - point.time) / 6), height / 2 - point.voltage / scale * height * 0.4]), '#086a91');
+          lastPlot = time;
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+    function setupTransformer(clock) {
+      let alternating = true, connected = true;
+      const inputs = ['primary-voltage', 'primary-turns', 'secondary-turns', 'resistance'];
+      const primaryArrows = createArrows('primary-wire', 'primary-flow', 8);
+      const secondaryArrows = createArrows('secondary-wire', 'secondary-flow', 8);
+      const fieldArrows = createArrows('core-field-path', 'core-arrows', 12);
+      function state() {
+        const u1 = 230 ** (Number(element('primary-voltage').value) / 236);
+        const n1 = Number(element('primary-turns').value), n2 = Number(element('secondary-turns').value);
+        const resistance = 10 ** Number(element('resistance').value);
+        const u2 = alternating ? u1 * n2 / n1 : 0;
+        const i2 = connected ? u2 / resistance : 0;
+        const power = u2 * i2;
+        return {u1, n1, n2, resistance, u2, i2, power, i1:power / u1};
+      }
+      function coil(id, turns, x) {
+        const count = Math.max(3, Math.round(3 + 7 * Math.log(turns / 10) / Math.log(200)));
+        let path = `M${x} 175`;
+        for (let index = 0; index < count; index++) {
+          const y = 175 - index * 82 / count;
+          const nextY = 175 - (index + 1) * 82 / count;
+          const middleY = (y + nextY) / 2;
+          path += `C${x - 40} ${y} ${x - 40} ${middleY} ${x} ${middleY}C${x + 40} ${middleY} ${x + 40} ${nextY} ${x} ${nextY}`;
+        }
+        element(id).setAttribute('d', path);
+      }
+      let snapshot = state();
+      function renderSnapshot(phase) {
+        const s = snapshot;
+        const currentSignal = Math.sin(phase), fieldSignal = -Math.cos(phase);
+        const flowing = alternating && connected;
+        primaryArrows(currentSignal, flowing, -Math.cos(phase) * 8);
+        secondaryArrows(currentSignal, flowing, -Math.cos(phase) * 8);
+        fieldArrows(fieldSignal, alternating);
+        element('core-field').setAttribute('opacity', alternating ? String(0.12 + 0.88 * Math.abs(fieldSignal)) : '0');
+        text('current-direction', !alternating ? 'Gleichspannung: kein Dauerbetrieb' : !connected ? 'Stromkreis offen: kein Laststrom' : Math.abs(currentSignal) < 0.025 ? 'Strom: gerade Richtungswechsel' : `Strom: ${currentSignal > 0 ? 'positive' : 'negative'} Halbwelle`);
+        text('current-instant', !alternating ? 'Primärstrom nicht bestimmt; Sekundärstrom 0 A.' : `Momentan: I₁ = ${quantity(Math.abs(currentSignal) < 0.025 ? 0 : Math.SQRT2 * s.i1 * currentSignal, 'A')} · I₂ = ${quantity(Math.abs(currentSignal) < 0.025 ? 0 : Math.SQRT2 * s.i2 * currentSignal, 'A')}`);
+        text('field-direction', !alternating ? 'Kein wechselndes Feld' : Math.abs(fieldSignal) < 0.025 ? 'Feld: gerade Richtungswechsel' : `Feld im Kern: ${fieldSignal > 0 ? 'im Uhrzeigersinn' : 'gegen den Uhrzeigersinn'}`);
+        text('field-instant', alternating ? `Momentane Feldstärke: ${Math.round(Math.abs(fieldSignal) * 100)} % des Maximums bei dieser Einstellung. Helligkeit zeigt Stärke, Pfeile zeigen Richtung.` : 'Ein statisches Feld und Schaltimpulse werden nicht dargestellt. Die Feldstärke ist hier nicht berechnet.');
+      }
+      clock.subscribe(renderSnapshot);
+      function update() {
+        const s = state();
+        snapshot = s;
+        text('u1-value', quantity(s.u1, 'V')); text('n1-value', s.n1); text('n2-value', s.n2); text('r-value', connected ? quantity(s.resistance, 'Ω') : 'abgetrennt');
+        element('primary-voltage').setAttribute('aria-valuetext', quantity(s.u1, 'Volt'));
+        element('resistance').setAttribute('aria-valuetext', quantity(s.resistance, 'Ohm'));
+        text('u2', quantity(s.u2, 'V')); text('i2', quantity(s.i2, 'A')); text('i1', alternating ? quantity(s.i1, 'A') : 'nicht bestimmt'); text('power', quantity(s.power, 'W'));
+        text('n1-svg', `N₁ = ${s.n1}`); text('n2-svg', `N₂ = ${s.n2}`);
+        text('source-symbol', alternating ? '~' : '=');
+        element('load-symbol').setAttribute('opacity', connected ? '1' : '.2');
+        element('open-switch').toggleAttribute('hidden', connected);
+        element('resistance').disabled = !connected;
+        element('mode-ac').setAttribute('aria-pressed', String(alternating)); element('mode-dc').setAttribute('aria-pressed', String(!alternating));
+        element('no-load').setAttribute('aria-pressed', String(!connected)); text('no-load', connected ? 'Last abtrennen' : 'Last anschließen');
+        coil('primary-coil', s.n1, 182); coil('secondary-coil', s.n2, 438);
+        element('primary-coil').setAttribute('transform', 'translate(-1 0)');
+        element('secondary-coil').setAttribute('transform', 'translate(1 0)');
+        text('visual-status', !alternating ? 'Gleichspannung ändert ihre Richtung nicht. Nach dem Einschalten entsteht deshalb keine dauerhafte Spannung an Spule 2. Achtung: Eine echte Primärspule kann dabei überhitzen.' : !connected ? 'Der Ausgang ist offen: Die Strompfeile verschwinden. Eine Spannung ist trotzdem vorhanden! Das wechselnde Feld bleibt bestehen. Im idealen Modell ist der Eingangsstrom null; real gibt es einen kleinen Strom zum Aufbau des Feldes.' : 'Strom fließt nur in den zwei getrennten Drahtkreisen. Das Magnetfeld im Kern überträgt die Energie. Seine Richtung und Stärke ändern sich ständig — es ist keine Welle, die von links nach rechts wandert.');
+        const voltageMax = Math.max(s.u1, s.u2);
+        const currentMax = Math.max(s.i1, s.i2);
+        for (const [id, value, maximum, unit] of [['input-voltage-bar', s.u1, voltageMax, 'Volt'], ['voltage-bar', s.u2, voltageMax, 'Volt'], ['input-current-bar', s.i1, currentMax, 'Ampere'], ['current-bar', s.i2, currentMax, 'Ampere']]) {
+          element(id).value = maximum > 0 ? value / maximum * 100 : 0;
+          element(id).setAttribute('aria-valuetext', !alternating && id === 'input-current-bar' ? 'Bei Gleichspannung nicht bestimmt' : quantity(value, unit));
+        }
+        element('input-current-bar').hidden = !alternating;
+        text('comparison-caption', !alternating ? 'Bei Gleichspannung ist der Eingangsstrom in diesem Modell nicht berechnet. Der Ausgang liefert dauerhaft weder Spannung noch Strom.' : `Vergleiche Blau und Orange jeweils innerhalb derselben Größe: U₁ = ${quantity(s.u1, 'V')}, U₂ = ${quantity(s.u2, 'V')}; I₁ = ${quantity(s.i1, 'A')}, I₂ = ${quantity(s.i2, 'A')}. Jeweils der größere Wert füllt seinen Balken. Spannung und Strom haben getrennte Skalen.`);
+        const ratio = s.n2 / s.n1;
+        text('transformer-summary', !alternating ? 'Gleichspannung: Am Ausgang entsteht keine dauerhafte Spannung. Ein- und Ausschaltvorgänge werden nicht simuliert.' : !connected ? `Ausgang offen: U₂ = ${quantity(s.u2, 'V')}, aber kein Strom. Im Idealmodell fließt auch am Eingang kein Strom; real wird ein kleiner Strom zum Aufbau des Feldes benötigt.` : `${ratio > 1 ? 'Mehr Spannung am Ausgang' : ratio < 1 ? 'Weniger Spannung am Ausgang' : 'Gleiche Spannung auf beiden Seiten'}: Das Windungsverhältnis ist ${numberFormat.format(ratio)}. Der Verbraucher bestimmt den Strom; die Quelle liefert ${quantity(s.power, 'W')}.`);
+        const dangerous = alternating && (s.u2 > 50 || s.i2 > 10 || s.power > 2000);
+        element('limits-note').hidden = !dangerous;
+        text('limits-note', `Virtueller Extrembereich: ${quantity(s.u2, 'V')}, ${quantity(s.i2, 'A')}, ${quantity(s.power, 'W')}. Diese ideal berechneten Werte sind keine Zusage, dass ein realer Trafo sie liefern kann. 50 V ist hier nur eine didaktische Warnschwelle, keine allgemeine Sicherheitsgrenze.`);
+        const {context, width, height} = prepareCanvas('transformer-plot');
+        const scale = Math.max(s.u1, s.u2);
+        for (const [amplitude, color] of [[s.u1, '#086a91'], [s.u2, '#b34d18']]) {
+          drawCurve(context, Array.from({length:241}, (_, index) => [index / 240 * width, height / 2 - (alternating ? Math.sin(index / 240 * 4 * Math.PI) : 1) * amplitude / scale * height * 0.37]), color);
+        }
+        text('challenge-feedback', '');
+        clock.refresh();
+      }
+      function configure(u1, n1, n2, resistance) {
+        element('primary-voltage').value = String(236 * Math.log(u1) / Math.log(230));
+        element('primary-turns').value = String(n1); element('secondary-turns').value = String(n2); element('resistance').value = String(Math.log10(resistance));
+        alternating = true; connected = true; update();
+      }
+      inputs.forEach(id => element(id).addEventListener('input', update));
+      element('mode-ac').addEventListener('click', () => { alternating = true; update(); });
+      element('mode-dc').addEventListener('click', () => { alternating = false; update(); });
+      element('no-load').addEventListener('click', () => { connected = !connected; update(); });
+      element('reset-transformer').addEventListener('click', () => configure(12, 400, 200, 12));
+      document.querySelectorAll('[data-preset]').forEach(button => button.addEventListener('click', () => {
+        const presets = {'high-voltage':[230, 10, 2000, 1e6], 'high-current':[230, 2000, 10, 0.01], charger:[120, 500, 50, 12]};
+        configure(...presets[button.dataset.preset]);
+      }));
+      element('start-challenge').addEventListener('click', () => configure(120, 500, 250, 100));
+      element('check-challenge').addEventListener('click', () => {
+        const s = state();
+        const correct = alternating && Math.abs(s.u1 - 120) < 2 && s.n1 === 500 && Math.abs(s.u2 - 12) < 0.25;
+        text('challenge-feedback', correct ? 'Geschafft! 50 / 500 = 1 / 10. Daher wird aus ungefähr 120 V eine Spannung von 12 V.' : 'Noch nicht: Nutze Wechselspannung, U₁ ≈ 120 V, N₁ = 500 und das Verhältnis U₂/U₁ = N₂/N₁.');
+      });
+      window.addEventListener('resize', update);
+      update();
+    }
+    function setupEveryday(clock) {
+      let chargerOn = true;
+      let hobActive = false, coupling = 1;
+      const hobArrows = createArrows('hob-field-path', 'hob-field-arrows', 6);
+      const eddyArrows = createArrows('eddy-path', 'eddy-flow', 3);
+      const chargingArrows = createArrows('charging-field-path', 'charging-field-arrows', 6);
+      const batteryArrows = createArrows('battery-path', 'battery-flow', 3);
+      clock.subscribe(phase => {
+        const signal = -Math.cos(phase);
+        hobArrows(signal, hobActive);
+        element('hob-field').setAttribute('opacity', hobActive ? String(0.15 + 0.85 * Math.abs(signal)) : '0');
+        eddyArrows(Math.sin(phase), hobActive, -Math.cos(phase) * 6);
+        chargingArrows(signal, chargerOn);
+        element('charging-field').setAttribute('opacity', String(coupling * (0.15 + 0.85 * Math.abs(signal))));
+        batteryArrows(1, chargerOn && coupling > 0, phase / (2 * Math.PI) * 8);
+        element('battery-flow').setAttribute('opacity', String(coupling));
+      });
+      function updateHob() {
+        const level = Number(element('hob-power').value), material = element('pan-material').value;
+        const heats = material === 'steel' && level > 0;
+        hobActive = heats;
+        text('hob-value', `${level} / 9`);
+        element('pan-heat').setAttribute('opacity', heats ? String(0.3 + level / 9 * 0.7) : '0');
+        element('pan-body').setAttribute('opacity', material === 'none' ? '.15' : '1');
+        element('eddy-path').setAttribute('opacity', heats ? '1' : '0');
+        text('hob-status', !level ? 'Ausgeschaltet: keine Energieübertragung. Ein zuvor heißer Topf kann trotzdem heiß bleiben.' : heats ? `Passender Topf erkannt: Wirbelströme erwärmen den Boden. Stufe ${level} — qualitativ ${level < 4 ? 'geringe' : level < 7 ? 'mittlere' : 'hohe'} Heizleistung.` : material === 'none' ? 'Kein Topf: Das Kochfeld gibt keine Heizleistung frei.' : 'Dieser Topf ist für das modellierte Kochfeld ungeeignet. Mit einem passenden magnetischen Spezialboden kann es anders sein.');
+        clock.refresh();
+      }
+      function updateBrush() {
+        const gap = Number(element('brush-gap').value);
+        coupling = chargerOn ? Math.exp(-gap / 8) : 0;
+        text('gap-value', `${gap} mm`);
+        element('brush-body').setAttribute('transform', `translate(0 ${-gap * 1.3})`);
+        element('charger-switch').setAttribute('aria-pressed', String(chargerOn)); text('charger-switch', chargerOn ? 'Ladestation an' : 'Ladestation aus');
+        text('brush-status', chargerOn ? `Relative Kopplungsanzeige: ${Math.round(coupling * 100)} %. ${gap < 5 ? 'Gute Kopplung: Energie kann zur Ladeelektronik übertragen werden.' : 'Mit größerem Abstand nimmt die Kopplung stark ab; reales Laden kann ganz aussetzen.'}` : 'Die Station ist aus. Kein wechselndes Magnetfeld, keine Ladeenergie.');
+        clock.refresh();
+      }
+      element('hob-power').addEventListener('input', updateHob); element('pan-material').addEventListener('change', updateHob);
+      element('brush-gap').addEventListener('input', updateBrush);
+      element('charger-switch').addEventListener('click', () => { chargerOn = !chargerOn; updateBrush(); });
+      updateHob(); updateBrush();
+    }
+    function setupQuiz() {
+      const answers = [
+        ['q1', 'b', 'Nur ein sich änderndes Magnetfeld induziert hier eine Spannung.'],
+        ['q2', 'a', 'Das Spannungsverhältnis ist gleich dem Windungsverhältnis: U₂/U₁ = 4.'],
+        ['q3', 'b', 'Das Spannungsverhältnis ist gleich dem Windungsverhältnis: U₂/U₁ = 1/2.'],
+        ['q4', 'a', 'Die Spulen sind magnetisch gekoppelt. Gleichrichter und Ladeelektronik versorgen anschließend den Akku.']
+      ];
+      element('quiz').addEventListener('submit', event => {
+        event.preventDefault(); const data = new FormData(event.currentTarget); let score = 0;
+        answers.forEach(([name, answer, explanation]) => {
+          const correct = data.get(name) === answer; if (correct) score++;
+          text(`feedback-${name}`, `${correct ? 'Richtig.' : 'Noch nicht richtig.'} ${explanation}`);
+        });
+        text('quiz-score', `${score} / 4 richtig${score === 4 ? ' — sehr gut!' : ' — probiere die Experimente noch einmal.'}`);
+      });
+      element('quiz').addEventListener('reset', () => { answers.forEach(([name]) => text(`feedback-${name}`, '')); text('quiz-score', ''); });
+    }
+    const clock = setupVisualClock();
+    setupInduction(); setupTransformer(clock); setupEveryday(clock); setupQuiz();
+    })();
+  </script>
+</body>
+</html>
