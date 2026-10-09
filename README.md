@@ -1,33 +1,15 @@
 # Induktion und Transformator
 
-Interaktives Physik-Experimentierlabor zu elektromagnetischer Induktion, Transformatoren und technischen Anwendungen.
+Interaktives Physik-Experimentierlabor zu elektromagnetischer Induktion, Transformatoren und technischen Alltagsanwendungen.
 
-## Inhalte
+## Lernstationen
 
-- Bewegten Stabmagneten und Spule untersuchen
-- Transformator mit Wechsel- und Gleichspannung erproben
-- Windungszahl, Ausgangsspannung und Last vergleichen
-- Induktion im Alltag und Wissenstest
+Bewegter Magnet und Spule, Transformator mit Wechsel- und Gleichspannung, Windungszahl und Ausgangsspannung, Anwendungen im Alltag sowie ein Wissenstest.
 
 ## Schnellstart
 
-Repository herunterladen oder klonen und index.html in einem aktuellen Browser öffnen.
+Repository herunterladen oder klonen und [index.html](./index.html) in einem aktuellen Browser öffnen.
 
 ## Dokumentation
 
-- [Experimente, Modellgrenzen und Prüfung](./docs/README.md)# Transformatoren
-
-Selbstlernübungen zu Transformatoren und elektromagnetischer Induktion.
-
-## Schnellstart
-
-1. Repository herunterladen oder klonen.
-2. `index.html` in einem aktuellen Browser öffnen.
-
-## Dokumentation
-
-- [Projektüberblick, Dateiaufbau, Entwicklung und Pflege](./docs/README.md)
-
-## Änderungen prüfen
-
-Funktionen und Darstellung nach jeder Änderung im Browser überprüfen. Offene Aufgaben stehen in der [Pflegedokumentation](./docs/README.md#pflege-und-offene-aufgaben).
+- [Experimente, Modellgrenzen und Prüfung](./docs/README.md)
