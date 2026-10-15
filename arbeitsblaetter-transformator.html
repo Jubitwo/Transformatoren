@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Induktion und Transformator · Arbeitsblätter · Klasse 10</title>
+<style>
+  *{box-sizing:border-box}body{margin:0;color:#172e3d;background:#e9eef3;font:14px/1.45 system-ui,-apple-system,sans-serif}
+  .toolbar{position:sticky;top:0;background:#173548;color:white;padding:14px 24px;z-index:10;display:flex;gap:10px;align-items:center;flex-wrap:wrap}.toolbar p{margin:0;flex:1}.toolbar button,.toolbar a{font:inherit;font-weight:700;padding:9px 14px;border:0;border-radius:6px;background:white;color:#173548;cursor:pointer;text-decoration:none}.toolbar button:focus-visible,.toolbar a:focus-visible{outline:3px solid #e6a72c;outline-offset:3px}
+  .page{background:white;max-width:210mm;min-height:297mm;margin:24px auto;padding:14mm 16mm;position:relative;border-top:8px solid #16749a}.sheet-2{border-top-color:#7951a8}.topline{display:flex;justify-content:space-between;gap:12px;font-size:11px;color:#4b6170;border-bottom:1px solid #bcccd6;padding-bottom:7px;margin-bottom:12px}
+  h1{font-size:25px;line-height:1.15;margin:0 0 9px}h2{font-size:16px;margin:14px 0 6px}p{margin:6px 0 9px}ol,ul{padding-left:22px;margin:7px 0}.identity{display:flex;justify-content:space-between;gap:12px;padding:8px 0;font-size:12px}
+  .box{background:#eef5f9;border-left:4px solid #16749a;padding:9px 12px;margin:10px 0}.help{background:#f4f0fa;border-color:#7951a8}.success{background:#eaf7f1;border-color:#177455}.warning{background:#fff2e9;border-color:#ba551d}.goal{font-weight:650}.tag{font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#526777}.task{break-inside:avoid;margin:11px 0;border-top:1px solid #d7e1e7;padding-top:8px}.task h2{margin-top:0;display:flex;align-items:center;gap:7px}.student .task h2:before{content:"□";font-size:19px;line-height:1;color:#16749a}.sheet-2 .task h2:before{color:#7951a8}
+  .lines{height:47px;background-color:#fff;background-image:repeating-linear-gradient(to bottom,#fff 0,#fff 21px,#c7d3db 21px,#c7d3db 22px);margin:7px 0;color:#172e3d;-webkit-print-color-adjust:exact;print-color-adjust:exact}.lines.tall{height:70px}.lines.short{height:24px}
+  table{width:100%;border-collapse:collapse;margin:8px 0;font-size:13px;break-inside:avoid}th,td{border:1px solid #b8cbd7;padding:7px;text-align:left;height:32px}th{background:#eaf3f8}.formula{text-align:center;font-size:17px;font-weight:700;margin:7px 0}.footer{margin-top:14px;border-top:1px solid #bcccd6;padding-top:7px;font-size:10px;color:#526777;display:flex;justify-content:space-between}.checks{font-size:12px;display:flex;gap:14px;flex-wrap:wrap;margin-top:9px}.small{font-size:12px;color:#465c6b}.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}.solution h2{color:#086a91}.solution p,.solution li{font-size:13px}.solution table{font-size:12px}.screen-only{max-width:210mm;margin:18px auto;padding:0 20px}.operator{font-weight:800;color:#086a91}.sheet-2 .operator{color:#694397}.step{display:inline-block;background:#173548;color:white;border-radius:50%;width:22px;height:22px;text-align:center;line-height:22px;margin-right:5px}
+  .workplan{display:grid;grid-template-columns:1.3fr 1fr 1.7fr;gap:8px;background:#173548;color:white;padding:9px 11px;border-radius:8px;margin:9px 0 11px;font-size:12px}.workplan b{display:block;color:#bfe6f5;font-size:10px;text-transform:uppercase;letter-spacing:.06em}.workplan span{display:block}.sheet-2 .workplan{background:#51356f}.sheet-2 .workplan b{color:#e3d4f2}
+  .task-kind{margin-left:auto;background:#e6f2f7;color:#305366;border-radius:20px;padding:2px 8px;font-size:10px;text-transform:uppercase;letter-spacing:.05em}.task-kind.transfer{background:#eaf7f1;color:#176548}.task-kind.check{background:#f4f0fa;color:#694397}
+  .route{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12px;margin:8px 0}.route span{background:#f1f5f7;border-radius:20px;padding:4px 9px}.route b{color:#086a91}.selfcheck{background:#f7fafb;border:1px solid #cbd8df;border-radius:8px;padding:8px 10px;margin:9px 0;font-size:12px}.selfcheck b{margin-right:8px}.selfcheck span{white-space:nowrap;margin-right:12px}.help strong{color:#694397}
+  body.students .solution{display:none}body.answers .student{display:none}
+  @media(max-width:650px){.page{padding:22px;min-height:0;margin:15px 8px}.two{grid-template-columns:1fr}.identity{flex-wrap:wrap}}
+  @page{size:A4;margin:0}@media print{body{background:white;font-size:10.5pt;line-height:1.35}.toolbar,.screen-only{display:none!important}.page{width:210mm;max-width:none;height:297mm;min-height:0;margin:0;padding:11mm 15mm 12mm;break-after:page;overflow:hidden;border-top-width:5px}.page:last-child{break-after:auto}h1{font-size:20pt}h2{font-size:12pt}table{font-size:9.5pt}th,td{padding:5px}.box{padding:7px 10px}.warning{margin:5px 0}.route{margin:4px 0}.task{margin:7px 0;padding-top:6px}.topline{font-size:8pt}.footer{font-size:8pt;margin-top:5px}.small,.checks,.selfcheck{font-size:9pt}.workplan{font-size:9pt;padding:6px 8px}.workplan b,.task-kind{font-size:7.5pt}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+  @media print{
+    .student.sheet-2 p{margin:3px 0 5px}
+    .student.sheet-2 .task{margin:4px 0;padding-top:4px}
+    .student.sheet-2 .task h2{margin-bottom:3px}
+    .student.sheet-2 table{margin:4px 0}
+    .student.sheet-2 th,.student.sheet-2 td{padding:3px;height:25px}
+    .student.sheet-2 .box{padding:5px 8px;margin:5px 0}
+    .student.sheet-2 .workplan{margin:4px 0}
+  }
+</style>
+</head>
+<body class="students">
+<div class="toolbar" aria-label="Druckauswahl">
+  <p><b>Induktion und Transformator · Klasse 10</b><br>4 Schülerseiten + 2 Lösungsseiten</p>
+  <a href="./index.html">Zur Lernwebsite</a>
+  <button data-mode="students" aria-pressed="true">Schülerblätter</button>
+  <button data-mode="answers" aria-pressed="false">Lösungen</button>
+  <button data-mode="all" aria-pressed="false">Alles</button>
+  <button id="print">Drucken / PDF</button>
+</div>
+<p class="screen-only">Die Blätter folgen dem Lernweg der Website: beobachten, erklären, rechnen und anwenden. Pflichtaufgaben sind mit den Infokästen ohne weitere Quellen lösbar.</p>
+
+<article class="page student sheet-1">
+  <div class="topline"><span>Physik · Klasse 10</span><span>Blatt 1 · Seite 1/2 · insgesamt etwa 40 Minuten</span></div>
+  <h1>Induktion entdecken</h1>
+  <div class="identity"><span>Name: __________________________</span><span>Datum: __________</span></div>
+  <div class="box goal">Lernziel: Ich kann erklären, wann in einer Spule eine Spannung entsteht.</div>
+  <div class="workplan"><div><b>Material</b><span>Arbeitsblatt, Stift, Lernwebsite</span></div><div><b>Arbeitsform</b><span>allein, leise</span></div><div><b>So gehst du vor</b><span>lesen → ausprobieren → notieren → prüfen</span></div></div>
+  <div class="box">
+    <b>Grundidee</b>
+    <p>Ein Magnet besitzt ein Magnetfeld. Bewegt man Magnet und Spule gegeneinander, ändert sich das Magnetfeld in der Spule. Dadurch entsteht eine Spannung. Diesen Vorgang nennt man <b>Induktion</b>.</p>
+    <p class="formula">Änderung des Magnetfeldes → Induktionsspannung</p>
+  </div>
+  <div class="task">
+    <h2>1 · <span class="operator">Beobachten</span><span class="task-kind">Pflicht</span></h2>
+    <p>Öffne <b>transformator.html</b> und wähle <b>1 · Induktion</b>. Führe die vier Versuche nacheinander aus und trage ein, was das Spannungsmessgerät zeigt.</p>
+    <table><tr><th>Versuch</th><th>Beobachtung</th></tr><tr><td>Magnet langsam in die Spule bewegen</td><td></td></tr><tr><td>Magnet schnell in die Spule bewegen</td><td></td></tr><tr><td>Magnet in der Spule stillhalten</td><td></td></tr><tr><td>Magnet aus der Spule herausbewegen</td><td></td></tr></table>
+  </div>
+  <div class="task">
+    <h2>2 · <span class="operator">Vergleichen</span><span class="task-kind">Pflicht</span></h2>
+    <p>Vervollständige.</p>
+    <p>Je schneller die Bewegung, desto ____________________________________________.</p>
+    <p>Steht der Magnet still, dann ________________________________________________.</p>
+    <p>Beim Umkehren der Bewegung ________________________________________________.</p>
+  </div>
+  <div class="task">
+    <h2>3 · <span class="operator">Erklären</span><span class="task-kind check">Denkaufgabe</span></h2>
+    <p>Ein Magnet liegt ruhig in einer Spule. Das Magnetfeld ist stark. Trotzdem zeigt das Messgerät 0 V. Erkläre diesen scheinbaren Widerspruch.</p><div class="lines tall"></div>
+  </div>
+  <div class="box help"><strong>Hilfe, falls du nicht weiterkommst:</strong> Nutze den Satzstarter: „Nicht die Stärke des Magnetfeldes allein ist entscheidend, sondern ...“</div>
+  <div class="selfcheck"><b>Kurz prüfen:</b><span>□ Tabelle vollständig</span><span>□ Änderung genannt</span><span>□ Fachwort Induktion verwendet</span></div>
+  <div class="footer"><span>Keine Versuche an Steckdosen.</span><span>Weiter auf Seite 2 →</span></div>
+</article>
+
+<article class="page student sheet-1">
+  <div class="topline"><span>Blatt 1 · Induktion und Aufbau des Transformators</span><span>Seite 2/2</span></div>
+  <h1>Wie arbeitet ein Transformator?</h1>
+  <div class="route"><b>Dein Weg:</b><span>4 Bauteile</span><span>5 Wechselspannung</span><span>6 Stromkreise</span><span>7 Alltag</span></div>
+  <div class="box">
+    <b>Die Wirkungskette</b>
+    <p><span class="step">1</span> Wechselstrom fließt durch die <b>Primärspule</b>.</p>
+    <p><span class="step">2</span> Im Eisenkern entsteht ein wechselndes Magnetfeld.</p>
+    <p><span class="step">3</span> Das Feld durchsetzt die <b>Sekundärspule</b>.</p>
+    <p><span class="step">4</span> Dort wird eine Wechselspannung induziert.</p>
+  </div>
+  <div class="task">
+    <h2>4 · <span class="operator">Zuordnen</span><span class="task-kind">Pflicht</span></h2>
+    <p>Ordne die Begriffe den Beschreibungen zu: <b>Primärspule · Sekundärspule · Eisenkern</b>.</p>
+    <table><tr><th>Beschreibung</th><th>Bauteil</th></tr><tr><td>liegt am Eingang und erzeugt das wechselnde Magnetfeld</td><td></td></tr><tr><td>leitet das Magnetfeld durch beide Spulen</td><td></td></tr><tr><td>liegt am Ausgang; in ihr entsteht die Ausgangsspannung</td><td></td></tr></table>
+  </div>
+  <div class="task">
+    <h2>5 · <span class="operator">Erklären</span><span class="task-kind">Pflicht</span></h2>
+    <p>Warum funktioniert ein Transformator nur mit einer sich ändernden Spannung, also mit Wechselspannung?</p><div class="lines tall"></div>
+  </div>
+  <div class="task">
+    <h2>6 · <span class="operator">Richtigstellen</span><span class="task-kind check">Selbstcheck</span></h2>
+    <p>Lea sagt: „Der Strom fließt durch den Eisenkern von der ersten zur zweiten Spule.“ Erkläre den Fehler.</p><div class="lines"></div>
+  </div>
+  <div class="task">
+    <h2>7 · <span class="operator">Anwenden</span><span class="task-kind transfer">Transfer</span></h2>
+    <p>Eine elektrische Zahnbürste lädt ohne offene Metallkontakte. Beschreibe die Energieübertragung mit den Begriffen <b>Spule, Magnetfeld, Induktion</b>.</p><div class="lines tall"></div>
+  </div>
+  <div class="selfcheck"><b>Ich kann jetzt …</b><span>□ Induktion erklären</span><span>□ Bauteile benennen</span><span>□ die Wirkungskette beschreiben</span></div>
+  <div class="footer"><span>Kontrolliere anschließend mit der Lösung.</span><span>Blatt 1 geschafft</span></div>
+</article>
+
+<article class="page student sheet-2">
+  <div class="topline"><span>Physik · Klasse 10</span><span>Blatt 2 · Seite 1/2 · insgesamt etwa 40 Minuten</span></div>
+  <h1>Wie verändert ein Trafo die Spannung?</h1>
+  <div class="identity"><span>Name: __________________________</span><span>Datum: __________</span></div>
+  <div class="box goal">Lernziel: Ich kann vorhersagen und berechnen, wie sich die Windungszahlen auf die Spannung auswirken.</div>
+  <div class="workplan"><div><b>Material</b><span>Arbeitsblatt, Stift, Lernwebsite</span></div><div><b>Arbeitsform</b><span>allein, leise</span></div><div><b>Rechenweg</b><span>vorhersagen → einsetzen → rechnen → prüfen</span></div></div>
+  <div class="box">
+    <b>Spannungsregel des idealen Transformators</b>
+    <div class="formula">U₂ / U₁ = N₂ / N₁ &nbsp;&nbsp; oder &nbsp;&nbsp; U₂ = U₁ · N₂ / N₁</div>
+    <p><b>U</b> steht für Spannung in Volt (V), <b>N</b> für die Anzahl der Windungen. Index 1 bezeichnet den Eingang, Index 2 den Ausgang.</p>
+    <p><b>Plausibilitätscheck:</b> Mehr Windungen am Ausgang ergeben eine größere Ausgangsspannung. Weniger Windungen ergeben eine kleinere Ausgangsspannung.</p>
+  </div>
+  <div class="task">
+    <h2>1 · <span class="operator">Vorhersagen</span><span class="task-kind">Pflicht</span></h2>
+    <p>Trage zuerst nur „größer“, „kleiner“ oder „gleich“ ein.</p>
+    <table><tr><th>Vergleich der Windungen</th><th>Vergleich der Spannungen</th></tr><tr><td>N₂ &gt; N₁</td><td>U₂ ist __________ als U₁.</td></tr><tr><td>N₂ &lt; N₁</td><td>U₂ ist __________ als U₁.</td></tr><tr><td>N₂ = N₁</td><td>U₂ ist __________ U₁.</td></tr></table>
+  </div>
+  <div class="task">
+    <h2>2 · <span class="operator">Schrittweise berechnen</span><span class="task-kind">Pflicht</span></h2>
+    <p>Gegeben: U₁ = 12 V, N₁ = 400 und N₂ = 200.</p>
+    <p>a) Vorhersage: U₂ ist __________________ als U₁.</p>
+    <p>b) Einsetzen: U₂ = ______ V · ______ / ______</p>
+    <p>c) Ergebnis mit Einheit: U₂ = __________________</p>
+    <p>d) Passt das Ergebnis zur Vorhersage? Begründe kurz.</p><div class="lines short"></div>
+  </div>
+  <div class="task">
+    <h2>3 · <span class="operator">Üben</span><span class="task-kind check">Selbstcheck</span></h2>
+    <table><tr><th>U₁</th><th>N₁</th><th>N₂</th><th>hoch / herunter / gleich</th><th>U₂</th></tr><tr><td>6 V</td><td>200</td><td>400</td><td></td><td></td></tr><tr><td>10 V</td><td>500</td><td>100</td><td></td><td></td></tr><tr><td>8 V</td><td>300</td><td>300</td><td></td><td></td></tr></table>
+  </div>
+  <div class="box help"><strong>Hilfe 1:</strong> Für U₂ steht N₂ oben im Bruch. <strong>Hilfe 2:</strong> Prüfe vor dem Rechnen: Muss U₂ größer, kleiner oder gleich U₁ sein?</div>
+  <div class="footer"><span>Prüfe: □ Vorhersage · □ Rechenweg · □ Einheit V</span><span>Weiter auf Seite 2 →</span></div>
+</article>
+
+<article class="page student sheet-2">
+  <div class="topline"><span>Blatt 2 · Spannung am Transformator</span><span>Seite 2/2</span></div>
+  <h1>Rechnen und anwenden</h1>
+  <div class="route"><b>Dein Weg:</b><span>4 planen</span><span>5 Fehler finden</span><span>6 simulieren</span><span>7 einschätzen</span></div>
+  <div class="task">
+    <h2>4 · <span class="operator">Eine Windungszahl bestimmen</span><span class="task-kind">Pflicht</span></h2>
+    <p>Ein idealer Trafo soll aus U₁ = 24 V die Spannung U₂ = 6 V erzeugen. Die Primärspule hat N₁ = 800 Windungen.</p>
+    <p>a) Muss der Trafo hoch- oder heruntertransformieren? ________________________</p>
+    <p>b) Die Ausgangsspannung ist der ______-te Teil der Eingangsspannung. Daher braucht die Sekundärspule den ______-ten Teil der Windungen.</p>
+    <p>c) Berechne N₂.</p><div class="lines tall"></div>
+    <div class="box help"><strong>Hilfe:</strong> N₂ = N₁ · U₂ / U₁. Prüfe danach: Weniger Spannung muss auch weniger Windungen bedeuten.</div>
+  </div>
+  <div class="task">
+    <h2>5 · <span class="operator">Einen Denkfehler finden</span><span class="task-kind check">Selbstcheck</span></h2>
+    <p>Mika rechnet bei U₁ = 10 V, N₁ = 200 und N₂ = 600:</p>
+    <p class="formula">U₂ = 10 V · 200 / 600 = 3,3 V</p>
+    <p>Erkläre den Fehler und berechne das richtige Ergebnis.</p><div class="lines tall"></div>
+  </div>
+  <div class="task">
+    <h2>6 · <span class="operator">Mit der Simulation prüfen</span><span class="task-kind transfer">Transfer</span></h2>
+    <p>Öffne <b>transformator.html</b>, wähle <b>2 · Transformator</b> und stelle U₁ = 12 V sowie N₁ = 400 ein. Verändere nur N₂.</p>
+    <table><tr><th>N₂</th><th>Deine Vorhersage für U₂</th><th>Anzeige der Simulation</th></tr><tr><td>200</td><td></td><td></td></tr><tr><td>400</td><td></td><td></td></tr><tr><td>800</td><td></td><td></td></tr></table>
+    <p>Formuliere eine Regel: Verdoppelt man N₂, dann ______________________________.</p>
+  </div>
+  <div class="task">
+    <h2>7 · <span class="operator">Reflektieren</span><span class="task-kind check">Abschluss</span></h2>
+    <p>Was war heute für dich am schwierigsten?</p>
+    <p>☐ Wirkungskette &nbsp; ☐ Begriffe &nbsp; ☐ Formel einsetzen &nbsp; ☐ Ergebnis prüfen</p>
+  </div>
+  <div class="selfcheck"><b>Ich kann jetzt …</b><span>□ Spannung vorhersagen</span><span>□ U₂ berechnen</span><span>□ mein Ergebnis prüfen</span></div>
+  <div class="box warning"><b>Sicherheit:</b> Die Rechnungen und Versuche sind Modelle. Transformatoren niemals selbst an eine Steckdose anschließen.</div>
+  <div class="footer"><span>Kontrolliere anschließend mit der Lösung.</span><span>Blatt 2 geschafft</span></div>
+</article>
+
+<article class="page solution">
+  <div class="topline"><span>Lösungen · Lehrkraft oder Selbstkontrolle</span><span>Blatt 1</span></div>
+  <h1>Lösungen: Induktion und Aufbau</h1>
+  <h2>1 · Beobachten</h2>
+  <table><tr><th>Versuch</th><th>Beobachtung</th></tr><tr><td>langsam hinein</td><td>kleine Spannung</td></tr><tr><td>schnell hinein</td><td>größere Spannung</td></tr><tr><td>stillhalten</td><td>0 V</td></tr><tr><td>herausbewegen</td><td>Spannung mit umgekehrter Anzeigerichtung</td></tr></table>
+  <h2>2 · Vergleichen</h2>
+  <p>Je schneller die Bewegung, desto <b>größer ist die Induktionsspannung</b>. Beim Stillstand ist die Spannung <b>null</b>. Beim Umkehren der Bewegung <b>kehrt sich die Richtung der Spannung um</b>.</p>
+  <h2>3 · Ruhender Magnet</h2>
+  <p>Ein Magnetfeld allein genügt nicht. Nur wenn sich das Magnetfeld in der Spule ändert, entsteht eine Induktionsspannung. Beim ruhenden Magneten findet keine Änderung statt.</p>
+  <h2>4 · Bauteile</h2>
+  <p>Eingang: <b>Primärspule</b> · Feldleitung: <b>Eisenkern</b> · Ausgang: <b>Sekundärspule</b>.</p>
+  <h2>5 · Wechselspannung</h2>
+  <p>Wechselspannung erzeugt einen Wechselstrom und damit ein sich ständig änderndes Magnetfeld. Dieses Feld induziert in der Sekundärspule eine Spannung. Ein dauerhaft unverändertes Feld erzeugt keine dauerhafte Induktionsspannung.</p>
+  <h2>6 · Strom im Eisenkern?</h2>
+  <p>Die Stromkreise sind elektrisch getrennt. Durch den Eisenkern fließt kein Strom von einer Spule zur anderen. Das wechselnde Magnetfeld überträgt die Energie.</p>
+  <h2>7 · Zahnbürste</h2>
+  <p>Die Spule der Ladestation erzeugt ein wechselndes Magnetfeld. Dieses Feld durchsetzt die Spule in der Zahnbürste. Dort wird eine Spannung induziert; die Ladeelektronik versorgt damit den Akku.</p>
+  <div class="box success"><b>Mindeststandard:</b> Lernende verwenden „Änderung des Magnetfeldes“, benennen beide Spulen und beschreiben die elektrische Trennung korrekt.</div>
+  <div class="footer"><span>Sinngemäß richtige Formulierungen gelten.</span><span>Lösung 1/2</span></div>
+</article>
+
+<article class="page solution">
+  <div class="topline"><span>Lösungen · Lehrkraft oder Selbstkontrolle</span><span>Blatt 2</span></div>
+  <h1>Lösungen: Spannungen berechnen</h1>
+  <h2>1 · Vorhersagen</h2>
+  <p>N₂ &gt; N₁ → U₂ ist <b>größer</b>. N₂ &lt; N₁ → U₂ ist <b>kleiner</b>. N₂ = N₁ → U₂ ist <b>gleich</b> U₁.</p>
+  <h2>2 · Schrittweise Rechnung</h2>
+  <p>U₂ ist kleiner als U₁.<br>U₂ = 12 V · 200 / 400 = <b>6 V</b>. Das passt zur Vorhersage, weil die Sekundärspule halb so viele Windungen besitzt.</p>
+  <h2>3 · Üben</h2>
+  <table><tr><th>U₁</th><th>N₁</th><th>N₂</th><th>Richtung</th><th>U₂</th></tr><tr><td>6 V</td><td>200</td><td>400</td><td>hoch</td><td>12 V</td></tr><tr><td>10 V</td><td>500</td><td>100</td><td>herunter</td><td>2 V</td></tr><tr><td>8 V</td><td>300</td><td>300</td><td>gleich</td><td>8 V</td></tr></table>
+  <h2>4 · Windungszahl</h2>
+  <p>Der Trafo transformiert herunter. 6 V sind der <b>vierte</b> Teil von 24 V. Daher braucht die Sekundärspule den vierten Teil der Windungen:</p>
+  <p class="formula">N₂ = 800 · 6 / 24 = 200 Windungen</p>
+  <h2>5 · Denkfehler</h2>
+  <p>Mika hat N₁ und N₂ im Bruch vertauscht. Weil N₂ dreimal so groß wie N₁ ist, muss U₂ dreimal so groß wie U₁ sein:</p>
+  <p class="formula">U₂ = 10 V · 600 / 200 = 30 V</p>
+  <h2>6 · Simulation</h2>
+  <table><tr><th>N₂</th><th>U₂</th></tr><tr><td>200</td><td>6 V</td></tr><tr><td>400</td><td>12 V</td></tr><tr><td>800</td><td>24 V</td></tr></table>
+  <p>Regel: Verdoppelt man N₂ bei unverändertem U₁ und N₁, dann <b>verdoppelt sich U₂</b>.</p>
+  <div class="box help"><b>Typische Fehler:</b> Indizes vertauscht, Windungszahl mit Volt versehen oder Ergebnis nicht mit der Vorhersage verglichen. Ansatz, Rechnung und Einheit getrennt rückmelden.</div>
+  <div class="footer"><span>Vertiefung Strom und Leistung erst nach sicherer Spannungsregel.</span><span>Lösung 2/2</span></div>
+</article>
+
+<script>
+  (() => {
+    document.querySelectorAll('[data-mode]').forEach(button => {
+      button.addEventListener('click', () => {
+        document.body.className = button.dataset.mode;
+        document.querySelectorAll('[data-mode]').forEach(choice => choice.setAttribute('aria-pressed', String(choice === button)));
+      });
+    });
+    document.getElementById('print').addEventListener('click', () => window.print());
+  })();
+</script>
+</body>
+</html>

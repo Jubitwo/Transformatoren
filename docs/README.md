@@ -9,7 +9,7 @@
 
 ## Datei und Start
 
-[index.html](../index.html) enthält Experimente, Erklärungen und Wissenstest; in einem aktuellen Browser öffnen.
+[index.html](../index.html) enthält Experimente, Erklärungen und Wissenstest; in einem aktuellen Browser öffnen. Die separat druckbaren [Arbeitsblätter für Klasse 10](../arbeitsblaetter-transformator.html) enthalten Aufgaben und einen getrennten Lösungsteil.
 
 ## Prüfung
 

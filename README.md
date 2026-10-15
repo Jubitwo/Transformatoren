@@ -12,14 +12,13 @@ Bewegter Magnet und Spule, Transformator mit Wechsel- und Gleichspannung, Windun
 
 ## Online-Version
 
+[Transformatoren-Lernlabor öffnen](https://jubitwo.github.io/Transformatoren/).
 
-Die GitHub-Pages-Adresse ist derzeit nicht erreichbar (404). Der [HTML-Quelltext](https://github.com/Jubitwo/Transformatoren/blob/main/index.html) bleibt direkt im Repository verfügbar.
-
+Das Lernlabor verlinkt auf die [Arbeitsblätter für Klasse 10](./arbeitsblaetter-transformator.html); sie lassen sich getrennt für Schülerinnen und Schüler und für die Selbstkontrolle als PDF drucken.
 
 ## Lokal starten
 
-
-Repository herunterladen oder klonen und [index.html](./index.html) in einem aktuellen Browser öffnen.
+Repository herunterladen und [index.html](./index.html) in einem aktuellen Browser öffnen. Der Link im Lernlabor öffnet [arbeitsblaetter-transformator.html](./arbeitsblaetter-transformator.html).
 
 
 ## Dokumentation
@@ -29,10 +28,7 @@ Repository herunterladen oder klonen und [index.html](./index.html) in einem akt
 
 ## HTML-Dateien
 
-Lernseite zu Transformatoren.
-
-| Datei | Zweck | Online-Version |
-|---|---|---|
-| [index.html](./index.html) | Hauptseite des Projekts | Nicht verfügbar (GitHub Pages liefert 404) |
-
-Hinweis: arbeitsblaetter-transformator.html wird in index.html referenziert, ist aber im Repository nicht vorhanden.
+| Datei | Zweck |
+|---|---|
+| [index.html](./index.html) | Interaktives Lernlabor: Induktion, Transformator, Alltagsbeispiele und Wissenstest |
+| [arbeitsblaetter-transformator.html](./arbeitsblaetter-transformator.html) | Zwei druckbare Selbstlernblätter zu Induktion und Spannungen mit getrenntem Lösungsteil |
